@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:ralf_class/home/form_page.dart';
 
 import 'home/home_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    GetMaterialApp(
+      home: const MyApp(),
+      initialRoute: '/',
+      getPages: [
+        GetPage(name: '/', page: () => const HomePage()),
+        GetPage(name: '/form_page', page: () => const FormPage()),
+      ],
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -16,7 +27,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: const HomePage(),
     );
   }
 }
