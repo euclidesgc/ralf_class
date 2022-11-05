@@ -104,7 +104,7 @@ class _FormPageState extends State<FormPage> {
                   );
 
                   if (user == null) {
-                    controller.create(formUser);
+                    controller.createUser(formUser);
                   } else {
                     controller.updateUser(formUser);
                   }

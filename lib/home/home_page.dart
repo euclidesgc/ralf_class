@@ -32,11 +32,11 @@ class _HomePageState extends State<HomePage> {
                     IconButton(
                       icon: const Icon(Icons.edit),
                       onPressed: () =>
-                          Get.toNamed('form_page', arguments: user),
+                          Get.toNamed('/form_page', arguments: user),
                     ),
                     IconButton(
                       icon: const Icon(Icons.delete),
-                      onPressed: () => controller.delete(user.id),
+                      onPressed: () => controller.deleteUser(user.id),
                     ),
                   ],
                 ),

@@ -12,6 +12,7 @@ void main() {
       getPages: [
         GetPage(name: '/', page: () => const HomePage()),
         GetPage(name: '/form_page', page: () => const FormPage()),
+        
       ],
     ),
   );

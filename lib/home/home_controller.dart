@@ -4,8 +4,6 @@ import 'package:get/get.dart';
 import 'package:ralf_class/home/models/user_model.dart';
 
 class HomeController {
-  String title = 'Home do Controller';
-
   RxList<UserModel> listUsers = [
     UserModel(
         id: 0,
@@ -19,7 +17,7 @@ class HomeController {
         avatarUrl: 'http://meuavatar_01.png'),
   ].obs;
 
-  void create(UserModel user) {
+  void createUser(UserModel user) {
     try {
       listUsers.add(user);
     } catch (e) {
@@ -28,7 +26,7 @@ class HomeController {
     log(listUsers.toString());
   }
 
-  List<UserModel> read() {
+  RxList<UserModel> readUsers() {
     log(listUsers.toString());
     try {
       return listUsers;
@@ -37,7 +35,7 @@ class HomeController {
     }
   }
 
-  UserModel readById(int id) {
+  UserModel readUserById(int id) {
     log(listUsers.toString());
     try {
       final index = listUsers.indexWhere((element) => element.id == id);
@@ -57,7 +55,7 @@ class HomeController {
     log(listUsers.toString());
   }
 
-  void delete(int id) {
+  void deleteUser(int id) {
     try {
       listUsers.removeWhere((element) => element.id == id);
     } catch (e) {
