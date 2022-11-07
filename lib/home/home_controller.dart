@@ -1,9 +1,28 @@
 import 'dart:developer';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ralf_class/home/models/user_model.dart';
 
-class HomeController {
+class HomeController extends GetxController {
+  final formKey = GlobalKey<FormState>();
+  late UserModel? user;
+  late TextEditingController tecNome;
+  late TextEditingController tecEmail;
+  late TextEditingController tecAvatarUrl;
+
+  // user = Get.arguments;
+
+  //   if (user == null) {
+  //     tecNome = TextEditingController();
+  //     tecEmail = TextEditingController();
+  //     tecAvatarUrl = TextEditingController();
+  //   } else {
+  //     tecNome = TextEditingController(text: user!.name);
+  //     tecEmail = TextEditingController(text: user!.email);
+  //     tecAvatarUrl = TextEditingController(text: user!.avatarUrl);
+  //   }
+
   RxList<UserModel> listUsers = [
     UserModel(
         id: 0,

@@ -2,15 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ralf_class/home/home_controller.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HomePage extends StatelessWidget {
+  final HomeController controller;
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  final controller = Get.put(HomeController());
+  const HomePage({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {

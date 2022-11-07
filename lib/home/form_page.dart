@@ -3,37 +3,10 @@ import 'package:get/get.dart';
 import 'package:ralf_class/home/home_controller.dart';
 import 'package:ralf_class/home/models/user_model.dart';
 
-class FormPage extends StatefulWidget {
-  const FormPage({super.key});
+class FormPage extends StatelessWidget {
+  final HomeController controller;
 
-  @override
-  State<FormPage> createState() => _FormPageState();
-}
-
-class _FormPageState extends State<FormPage> {
-  final controller = Get.find<HomeController>();
-
-  final _formKey = GlobalKey<FormState>();
-  late UserModel? user;
-  late TextEditingController tecNome;
-  late TextEditingController tecEmail;
-  late TextEditingController tecAvatarUrl;
-
-  @override
-  void initState() {
-    super.initState();
-
-    user = Get.arguments;
-    if (user == null) {
-      tecNome = TextEditingController();
-      tecEmail = TextEditingController();
-      tecAvatarUrl = TextEditingController();
-    } else {
-      tecNome = TextEditingController(text: user!.name);
-      tecEmail = TextEditingController(text: user!.email);
-      tecAvatarUrl = TextEditingController(text: user!.avatarUrl);
-    }
-  }
+  const FormPage({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -42,14 +15,14 @@ class _FormPageState extends State<FormPage> {
         title: const Text(''),
       ),
       body: Form(
-        key: _formKey,
+        key: controller.formKey,
         child: Column(
           children: [
             const SizedBox(height: 16),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
-                controller: tecNome,
+                controller: controller.tecNome,
                 decoration: const InputDecoration(
                   label: Text('Nome'),
                   border: OutlineInputBorder(
@@ -63,7 +36,7 @@ class _FormPageState extends State<FormPage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
-                controller: tecEmail,
+                controller: controller.tecEmail,
                 decoration: const InputDecoration(
                   label: Text('Email'),
                   border: OutlineInputBorder(
@@ -77,7 +50,7 @@ class _FormPageState extends State<FormPage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
-                controller: tecAvatarUrl,
+                controller: controller.tecAvatarUrl,
                 decoration: const InputDecoration(
                   label: Text('URL do Avatar'),
                   border: OutlineInputBorder(
@@ -95,15 +68,15 @@ class _FormPageState extends State<FormPage> {
               child: ElevatedButton(
                 onPressed: () {
                   final formUser = UserModel(
-                    id: user == null
+                    id: controller.user == null
                         ? controller.listUsers.length + 1
-                        : user!.id,
-                    name: tecNome.text,
-                    email: tecEmail.text,
-                    avatarUrl: tecAvatarUrl.text,
+                        : controller.user!.id,
+                    name: controller.tecNome.text,
+                    email: controller.tecEmail.text,
+                    avatarUrl: controller.tecAvatarUrl.text,
                   );
 
-                  if (user == null) {
+                  if (controller.user == null) {
                     controller.createUser(formUser);
                   } else {
                     controller.updateUser(formUser);
